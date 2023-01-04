@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/transaction.dart';
+import 'dart:io';
 
 class TransactionsList extends StatelessWidget {
   final List<Transaction> userTransactions;
 
   TransactionsList({@required this.userTransactions});
 
+  String getCurrency() {
+    var format = NumberFormat.simpleCurrency(locale: Platform.localeName);
+    return format.currencySymbol;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 400,
       child: ListView.builder(
         itemCount: userTransactions.length,
         itemBuilder: (ctx, index) {
@@ -27,10 +33,10 @@ class TransactionsList extends StatelessWidget {
                   ),
                   padding: EdgeInsets.all(10),
                   child: Text(
-                    '\$ ${userTransactions[index].amount}',
+                    '${userTransactions[index].amount.toStringAsFixed(2)} ${getCurrency()}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                      fontSize: 15,
                       color: Colors.purple,
                     ),
                   ),
@@ -41,7 +47,7 @@ class TransactionsList extends StatelessWidget {
                     Text(
                       userTransactions[index].title,
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
