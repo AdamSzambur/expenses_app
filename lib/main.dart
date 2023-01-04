@@ -14,6 +14,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  void test() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
