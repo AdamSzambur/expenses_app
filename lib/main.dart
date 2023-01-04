@@ -9,7 +9,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Expenses Application',
+      title: 'Personal Expenses',
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        accentColor: Colors.amber,
+      ),
       home: MyHomePage(),
     );
   }
@@ -42,7 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
     showModalBottomSheet(
         context: ctx,
         builder: (_) {
-          return NewTransaction(_addNewTransaction);
+          return GestureDetector(
+            onTap:
+                () {}, //bez tego zakladka bedzie sie zamykac w momecie klikniecia na nia
+            child: NewTransaction(_addNewTransaction),
+            behavior: HitTestBehavior
+                .opaque, //a tutaj bedzie sie zamykac po nacisnieciu poza nia
+          );
         });
   }
 
@@ -63,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Expences'),
+        title: Text('Personal Expenses'),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
@@ -79,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Container(
             child: Card(
-              color: Colors.blue,
+              color: Theme.of(context).primaryColorLight,
               child: Text('CHART'),
               elevation: 5,
             ),
