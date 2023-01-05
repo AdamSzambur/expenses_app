@@ -11,22 +11,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.amber,
-          fontFamily: 'Quicksand',
-          textTheme: ThemeData.light().textTheme.copyWith(
-                  titleLarge: TextStyle(
-                fontFamily: 'OpenSans',
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              )),
-          appBarTheme: AppBarTheme(
-              textTheme: ThemeData.light().textTheme.copyWith(
-                      titleLarge: TextStyle(
-                    fontFamily: 'Opensans',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  )))),
+        primarySwatch: Colors.purple,
+        accentColor: Colors.amber,
+        fontFamily: 'Quicksand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+                titleLarge: TextStyle(
+              fontFamily: 'OpenSans',
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            )),
+        appBarTheme: AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       home: MyHomePage(),
     );
   }
@@ -41,19 +42,20 @@ class _MyHomePageState extends State<MyHomePage> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
-  final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      title: 'Buty Adidas',
-      amount: 250.32,
-      date: DateTime.now(),
-    ),
-    Transaction(
-        id: 't2',
-        title: 'Podkoszulka Nike',
-        amount: 120.99,
-        date: DateTime.now()),
-  ];
+  final List<Transaction> _userTransactions = [];
+  // final List<Transaction> _userTransactions = [
+  //   Transaction(
+  //     id: 't1',
+  //     title: 'Buty Adidas',
+  //     amount: 250.32,
+  //     date: DateTime.now(),
+  //   ),
+  //   Transaction(
+  //       id: 't2',
+  //       title: 'Podkoszulka Nike',
+  //       amount: 120.99,
+  //       date: DateTime.now()),
+  // ];
 
   void startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
@@ -88,7 +90,6 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(
           'Personal Expenses',
-          style: TextStyle(fontFamily: 'OpenSans'),
         ),
         actions: [
           IconButton(
