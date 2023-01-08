@@ -53,16 +53,19 @@ class TransactionsList extends StatelessWidget {
                           padding: EdgeInsets.all(6),
                           child: FittedBox(
                             child: Text(
-                                '${userTransactions[index].amount.toStringAsFixed(2)} ${getCurrency()}'),
+                                '${userTransactions[userTransactions.length - (index + 1)].amount.toStringAsFixed(2)} ${getCurrency()}'),
                           ),
                         ),
                       ),
                       title: Text(
-                        userTransactions[index].title,
+                        userTransactions[userTransactions.length - (index + 1)]
+                            .title,
                         style: Theme.of(context).textTheme.headline6,
                       ),
                       subtitle: Text(
-                        DateFormat.yMMMd().format(userTransactions[index].date),
+                        DateFormat.yMMMd().format(userTransactions[
+                                userTransactions.length - (index + 1)]
+                            .date),
                         style: TextStyle(color: Colors.grey),
                       ),
                     ),
